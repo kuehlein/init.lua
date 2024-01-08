@@ -37,5 +37,4 @@ vim.opt.listchars = {
     precedes = '«',
     extends = '»',
 }
-vim.cmd("highlight NonText guifg=#444444")
 

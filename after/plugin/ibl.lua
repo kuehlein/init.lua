@@ -1,6 +1,11 @@
--- modify this file to mess with the indent guides
+require("ibl").setup {
+    indent = { char = "│" },
+    scope = { enabled = false },
+}
+vim.cmd("highlight NonText guifg=#444444")
 
 -- local highlight = {
+
 --     "RainbowRed",
 --     "RainbowYellow",
 --     "RainbowBlue",
