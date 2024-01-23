@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
     use 'theprimeagen/harpoon'
     use 'mbbill/undotree'
     use 'tpope/vim-fugitive'
+    use 'dense-analysis/ale' -- asynchronous linting
 
     -- lsp
     use {

@@ -5,7 +5,6 @@ require("ibl").setup {
 vim.cmd("highlight NonText guifg=#444444")
 
 -- local highlight = {
-
 --     "RainbowRed",
 --     "RainbowYellow",
 --     "RainbowBlue",
