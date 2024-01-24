@@ -28,7 +28,7 @@ vim.opt.updatetime = 50;
 
 vim.opt.colorcolumn = "80,100";
 
--- show whitespace
+-- show white space
 vim.opt.list = true;
 vim.opt.listchars = {
     tab = '→ ',
