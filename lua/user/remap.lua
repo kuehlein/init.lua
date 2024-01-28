@@ -1,7 +1,5 @@
 vim.g.mapleader = " ";
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex);
-
--- TODO: use ripgrep?
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex); -- should we use this?
 
 -- vim grep
 vim.keymap.set("n", "<leader>g", ":vimgrep // %<Left><Left><Left>"); -- search

@@ -1,8 +1,10 @@
-require("ibl").setup {
-    indent = { char = "│" },
-    scope = { enabled = false },
-}
-vim.cmd("highlight NonText guifg=#444444")
+-- TODO: delete this file after creating custom theme
+
+-- require("ibl").setup {
+--     indent = { char = "│" },
+--     scope = { enabled = false },
+-- }
+-- vim.cmd("highlight NonText guifg=#444444")
 
 -- local highlight = {
 --     "RainbowRed",

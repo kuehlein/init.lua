@@ -39,21 +39,11 @@ return require('packer').startup(function(use)
     }
 
     -- indent guides
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("ibl").setup()
-        end
-    }
-
-    -- colorscheme
-    use {
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    }
-
-end)
+    -- use {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     config = function()
+    --         require("ibl").setup()
+    --     end
+    -- }
+end);
 
