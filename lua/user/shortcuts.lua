@@ -1,3 +1,12 @@
+-- TODO: autocomplete brackets...
+--       * auto open/close
+--       * auto delete
+--       * do nothing if manually closing
+--       * format expanding... (hitting enter...)
+--       * if opening brackets not followed by \n, normal behavior
+
+-- TODO: what is prime's window manager? (how he navigates the file system so fast)
+
 -- autocomplete closing brackets/strings
 vim.keymap.set("i", '"', '""<Left>');
 vim.keymap.set("i", "(", "()<Left>");
@@ -19,19 +28,20 @@ vim.keymap.set("i", "{", function()
         vim.api.nvim_win_set_cursor(0, { line, col + 1 });
     end
 end);
-vim.keymap.set("i", "<", function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0));
-    local current_line = vim.api.nvim_get_current_line();
-
-    -- TODO: should we expand this to cover more than just turbo fish?
-
-    if col > 2 and current_line:sub(col - 1, col) == "::" then
-        vim.api.nvim_put({ "<>" }, "", false, true);
-        vim.api.nvim_win_set_cursor(0, { line, col + 1 });
-    end
-end);
+-- vim.keymap.set("i", "<", function()
+--     local line, col = unpack(vim.api.nvim_win_get_cursor(0));
+--     local current_line = vim.api.nvim_get_current_line();
+--
+--     -- TODO: should we expand this to cover more than just turbo fish?
+--
+--     if col > 2 and current_line:sub(col - 1, col) == "::" then
+--         vim.api.nvim_put({ "<>" }, "", false, true);
+--         vim.api.nvim_win_set_cursor(0, { line, col + 1 });
+--     end
+-- end);
 
 -- print
+-- TODO: cursor placement here is messed up
 vim.keymap.set("n", "<leader>pl", function()
     vim.api.nvim_put({ 'println!("");' }, "", false, true);
     vim.api.nvim_command("normal ==");

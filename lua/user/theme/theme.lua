@@ -11,11 +11,15 @@ local M = {};
 -- TODO: i wonder if there's a way to "compile" this so we don't have to run this on every startup
 -- TODO: come up with a proper theme name?
 
+-- TODO: colors for things like search/replace & menus?
+-- TODO: come back and refine javascript
+
 
 function M.color_scheme()
     -- theme
     local t = {
         Comment = { fg = p.fg.gray },
+        Constant = { fg = colors.blue[1] },
         ColorColumn = { bg = colors.gray[8] },
         CursorLine = { bg = colors.gray[8] },
         CursorLineNr = { fg = p.white },
@@ -24,7 +28,8 @@ function M.color_scheme()
         Keyword = { fg = p.fg.red },
         LineNr = { fg = p.fg.gray },
         NonText = { fg = p.white },
-        Normal = { bg = p.bg.gray },
+        Normal = { bg = p.bg.gray }, -- non-transparent bg
+        -- Normal = { bg = colors.NONE }, -- transparent bg
         Pmenu = { bg = colors.gray[8] },
         PmenuSbar = {},
         PmenuSel = { bg = p.gray },
@@ -51,6 +56,7 @@ function M.color_scheme()
         ["@lsp.typemod.keyword.crateRoot.rust"] = { fg = p.fg.red },
         ["@lsp.typemod.decorator.attribute.rust"] = { fg = p.fg.orange },
         ["@lsp.typemod.function.defaultLibrary.rust"] = { fg = p.fg.blue },
+        ["@function.macro.rust"] = { fg = p.fg.pink },
         ["@number.rust"] = { fg = colors.blue[1] },
         ["@punctuation.bracket.rust"] = { fg = p.fg.green },
         ["@punctuation.delimiter.rust"] = { fg = p.fg.red },
@@ -58,6 +64,35 @@ function M.color_scheme()
         ["@string.escape.rust"] = { fg = p.fg.red },
         ["@type.builtin.rust"] = { fg = p.fg.blue },
         ["@type.qualifier.rust"] = { fg = p.fg.red },
+
+        -- toml
+        ["@punctuation.bracket.toml"] = { fg = p.fg.green },
+
+        -- lua
+        ["@constructor.lua"] = { fg = p.green },
+        ["@punctuation.bracket.lua"] = { fg = p.fg.green },
+
+        -- javascript
+        ["@function.javascript"] = { fg = colors.blue[2] },
+        ["@lsp.type.parameter.javascript"] = { fg = p.fg.orange },
+        ["@lsp.type.variable.javascript"] = { fg = p.white },
+        ["@lsp.typemod.variable.readonly.javascript"] = { fg = colors.blue[2] }, -- p.fg.blue??
+        ["@lsp.typemod.parameter.declaration.javascript"] = { fg = p.fg.orange },
+        ["@punctuation.bracket.javascript"] = { fg = p.fg.green },
+        ["@string.escape.javascript"] = { fg = p.fg.red },
+
+        -- typescript
+        ["@function.typescript"] = { fg = colors.blue[2] },
+        ["@lsp.type.parameter.typescript"] = { fg = p.fg.orange },
+        ["@lsp.type.variable.typescript"] = { fg = p.white },
+        ["@lsp.typemod.variable.readonly.typescript"] = { fg = colors.blue[2] }, -- p.fg.blue??
+        ["@lsp.typemod.parameter.declaration.typescript"] = { fg = p.fg.orange },
+        ["@punctuation.bracket.typescript"] = { fg = p.fg.green },
+        ["@string.escape.typescript"] = { fg = p.fg.red },
+
+        -- json
+        ["@punctuation.bracket.json"] = { fg = p.fg.green },
+        ["@string.escape.json"] = { fg = p.fg.red },
     };
 
     -- Each entry into the inner table corresponds to a configuration key,
@@ -70,47 +105,31 @@ function M.color_scheme()
 
     -- if another theme is set, clear it, then apply our theme
     if vim.g.colors_name then
-        vim.cmd("highlight clear")
+        vim.cmd("highlight clear");
     end
 
     -- name of theme we are applying
-    vim.g.colors_name = "theme"
+    vim.g.colors_name = "theme";
     
     -- apply the theme for each value in `t`
     for group, style in pairs(t) do
-        highlight(group, style)
+        highlight(group, style);
     end
 
     -- highlight illegal characters ()
     -- vim.cmd('syntax match IllegalCharacter "​|‌|‍|‎|‏|﻿"');
     -- vim.api.nvim_set_hl(0, "IllegalCharacter", { bg = "#FF0000" });
-
+    
+    -- TODO: how to do this??
     -- create custom highlight group to target tokens we can't target alone
-    vim.cmd('syntax match Punctuation ",|;"');
-    vim.api.nvim_set_hl(0, "Punctuation", { fg = p.white });
+    -- vim.cmd('syntax match Punctuation ",|;"');
+    -- vim.api.nvim_set_hl(0, "Punctuation", { default = 0, fg = p.white });
 end;
 
 
 -- TODO: remove this once the colorscheme is finished...
 M.color_scheme();
 
-
--- dark
--- Temp override until Primitives are updated
--- darkColors.fg.default = "#e6edf3",
--- darkColors.fg.muted = "#7d8590",
--- darkColors.accent.fg = "#2f81f7",
--- darkColors.severe.subtle = "rgba(219, 109, 40, 0.1)",
--- darkColors.danger.subtle = "rgba(248, 81, 73, 0.1)",
--- darkColors.done.subtle = "rgba(163, 113, 247, 0.1)",
--- darkColors.sponsors.subtle = "rgba(219, 97, 162, 0.1)",
-
--- dark & high contrast...
--- dark & colorblind...
--- dark & dimmed...
-
-
--- TODO: does putting this in a different file cause things to slow down?
 
 return M;
 

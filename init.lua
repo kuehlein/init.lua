@@ -15,4 +15,6 @@
 require("user.remap")
 require("user.plugins")
 require("user.set")
+require("user.theme.theme"); -- scope this differently?
+require("user.shortcuts");
 
