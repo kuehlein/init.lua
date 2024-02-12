@@ -7,10 +7,32 @@
 
 -- TODO: what is prime's window manager? (how he navigates the file system so fast)
 
+-- TODO: move this to utils?
+local function smart_close_bracket(opening, closing)
+    return function()
+        local col = vim.api.nvim_win_get_cursor(0)[2];
+        local prev_char = vim.api.nvim_get_current_line():sub(col, col);
+
+        if prev_char == opening then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", true);
+        else
+            vim.api.nvim_feedkeys(closing, "i", false);
+        end
+    end
+end
+
 -- autocomplete closing brackets/strings
 vim.keymap.set("i", '"', '""<Left>');
 vim.keymap.set("i", "(", "()<Left>");
 vim.keymap.set("i", "[", "[]<Left>");
+vim.keymap.set("i", "{", "{}<Left>");
+
+-- ...
+-- vim.keymap.set("i", '"', smart_close_bracket('"', '"'));
+vim.keymap.set("i", ")", smart_close_bracket("(", ")"));
+vim.keymap.set("i", "]", smart_close_bracket("[", "]"));
+vim.keymap.set("i", "}", smart_close_bracket("{", "}"));
+
 vim.keymap.set("i", "{", function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0));
     local current_line = vim.api.nvim_get_current_line();
