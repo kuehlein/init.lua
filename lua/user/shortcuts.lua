@@ -7,6 +7,20 @@
 
 -- TODO: what is prime's window manager? (how he navigates the file system so fast)
 
+local function smart_open_bracket(opening, closing)
+    return function()
+        local col = vim.api.nvim_win_get_cursor(0)[2];
+        local line = vim.api.nvim_get_current_line();
+
+        if col == #line then
+            vim.api.nvim_feedkeys(opening .. closing, "i", false);
+            -- todo move cursor inside...
+        else
+            vim.api.nvim_feedkeys(opening, "i", false);
+        end
+    end
+end
+
 -- TODO: move this to utils?
 local function smart_close_bracket(opening, closing)
     return function()
@@ -22,16 +36,20 @@ local function smart_close_bracket(opening, closing)
 end
 
 -- autocomplete closing brackets/strings
-vim.keymap.set("i", '"', '""<Left>');
-vim.keymap.set("i", "(", "()<Left>");
-vim.keymap.set("i", "[", "[]<Left>");
-vim.keymap.set("i", "{", "{}<Left>");
+-- vim.keymap.set("i", '"', '""<Left>');
+-- vim.keymap.set("i", "(", "()<Left>");
+-- vim.keymap.set("i", "[", "[]<Left>");
+-- vim.keymap.set("i", "{", "{}<Left>");
+-- vim.keymap.set("i", '"', smart_open_bracket('"', '"'));
+-- vim.keymap.set("i", "(", smart_open_bracket("(", ")"));
+-- vim.keymap.set("i", "[", smart_open_bracket("[", "]"));
+-- vim.keymap.set("i", "{", smart_open_bracket("{", "}"));
 
 -- ...
 -- vim.keymap.set("i", '"', smart_close_bracket('"', '"'));
-vim.keymap.set("i", ")", smart_close_bracket("(", ")"));
-vim.keymap.set("i", "]", smart_close_bracket("[", "]"));
-vim.keymap.set("i", "}", smart_close_bracket("{", "}"));
+-- vim.keymap.set("i", ")", smart_close_bracket("(", ")"));
+-- vim.keymap.set("i", "]", smart_close_bracket("[", "]"));
+-- vim.keymap.set("i", "}", smart_close_bracket("{", "}"));
 
 vim.keymap.set("i", "{", function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0));
@@ -61,6 +79,8 @@ end);
 --         vim.api.nvim_win_set_cursor(0, { line, col + 1 });
 --     end
 -- end);
+
+
 
 -- print
 -- TODO: cursor placement here is messed up
