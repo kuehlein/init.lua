@@ -28,19 +28,19 @@ function M.color_scheme()
         Keyword = { fg = p.fg.red },
         LineNr = { fg = p.fg.gray },
         NonText = { fg = p.white },
-        Normal = { bg = p.bg.gray }, -- non-transparent bg
-        -- Normal = { bg = colors.NONE }, -- transparent bg
+        Normal = { bg = p.bg.gray },
         Pmenu = { bg = colors.gray[8] },
         PmenuSbar = {},
         PmenuSel = { bg = p.gray },
         PmenuThumb = {},
+        Search = { bg = p.fg.yellow, fg = p.bg.yellow },
         SignColumn = { bg = p.bg.gray },
         -- SpellBad = { bg = colors.blue[9], undercurl = true },
         Special = { fg = p.white },
         Statement = { fg = p.fg.red },
         Type = { fg = p.fg.orange },
         Visual = { bg = colors.gray[7] },
-        Whitespace = { fg = colors.gray[7] },
+        Whitespace = { fg = colors.gray[6] },
 
         -- DiagnosticUnnecessary = { blend = 20 }, -- ?????
 
@@ -83,12 +83,25 @@ function M.color_scheme()
 
         -- typescript
         ["@function.typescript"] = { fg = colors.blue[2] },
+        ["@lsp.type.interface.typescriptreact"] = { fg = p.fg.purple },
         ["@lsp.type.parameter.typescript"] = { fg = p.fg.orange },
-        ["@lsp.type.variable.typescript"] = { fg = p.white },
+        ["@lsp.type.parameter.typescriptreact"] = { fg = p.fg.orange },
+        ["@lsp.type.type.typescriptreact"] = { fg = p.fg.purple },
+        -- ["@lsp.type.variable.typescript"] = { fg = p.white },
+        ["@lsp.type.variable.typescriptreact"] = { fg = p.fg.blue },
         ["@lsp.typemod.variable.readonly.typescript"] = { fg = colors.blue[2] }, -- p.fg.blue??
         ["@lsp.typemod.parameter.declaration.typescript"] = { fg = p.fg.orange },
+        ["@lsp.typemod.parameter.declaration.typescriptreact"] = { fg = p.fg.orange },
+        ["@lsp.typemod.property.declaration.typescriptreact"] = { fg = p.white },
+        ["@none.tsx"] = { fg = p.white },
+        ["@punctuation.bracket.tsx"] = { fg = p.fg.green },
         ["@punctuation.bracket.typescript"] = { fg = p.fg.green },
+        ["@punctuation.special.tsx"] = { fg = p.fg.red },
         ["@string.escape.typescript"] = { fg = p.fg.red },
+        ["@tag.attribute.tsx"] = { fg = p.fg.purple },
+        ["@tag.builtin.tsx"] = { fg = colors.green[1] },
+        ["@tag.tsx"] = { fg = colors.blue[2] },
+        ["@type.builtin.tsx"] = { fg = p.fg.blue },
 
         -- json
         ["@punctuation.bracket.json"] = { fg = p.fg.green },

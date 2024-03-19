@@ -710,7 +710,7 @@ function M.colorscheme(variant)
     set_highlights()
 end
 
--@param options Options
+--@param options Options
 function M.setup(options)
     config.extend_options(options or {})
 end

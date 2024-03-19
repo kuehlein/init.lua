@@ -2,11 +2,12 @@ vim.g.mapleader = " ";
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex); -- should we use this?
 
 -- vim grep
-vim.keymap.set("n", "<leader>g", ":vimgrep // %<Left><Left><Left>"); -- search
+-- vim.keymap.set("n", "<leader>g", ":vimgrep // %<Left><Left><Left>"); -- search
 -- vim.keymap.set("n", "<leader>j", ":cn<CR>"); -- next - "n"?
 -- vim.keymap.set("n", "<leader>k", ":cp<CR>"); -- previous - "p"?
 vim.keymap.set("n", "<leader>o", ":copen<CR>"); -- open match window
 vim.keymap.set("n", "<leader>c", ":cclose<CR>"); -- close match window
+
 vim.keymap.set("n", "<leader>sr", function()
     local old_text = vim.fn.input("search:");
     local new_text = vim.fn.input("replace:");
